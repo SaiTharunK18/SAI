@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Encrypt/Decrypt App</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Encrypt/Decrypt Text</h1>
+      <form method="POST">
+        <div class="form-group">
+          <label for="text">Enter Text:</label>
+          <textarea class="form-control" id="text" name="text" rows="3">{{ request.form['text'] if request.method == 'POST' else '' }}</textarea>
+        </div>
+        <button type="submit" name="encrypt" class="btn btn-primary">Encrypt</button>
+        <button type="submit" name="decrypt" class="btn btn-secondary">Decrypt</button>
+      </form>
+      {% if encrypted_text %}
+      <div class="result">
+        <h2>Encrypted Text:</h2>
+        <p>{{ encrypted_text }}</p>
+      </div>
+      {% endif %}
+      {% if decrypted_text %}
+      <div class="result">
+        <h2>Decrypted Text:</h2>
+        <p>{{ decrypted_text }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
